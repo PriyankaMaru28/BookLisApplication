@@ -6,16 +6,18 @@ import { actionCreators } from "../state/index";
 
 import { State } from "../state/reducers";
 
-// interface INewBookProps {
-//   Name?: String;
-//   Price?: number;
-//   Category?: String;
-// }
+interface INewBookProps {
+  Name?: String;
+  Price?: number;
+  Category?: String;
+  id?: number;
+}
 
-const NewBook = () => {
+const NewBook = (props: INewBookProps) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
   const dispatch = useDispatch();
 
   const updatedstate: boolean = useSelector(
@@ -23,7 +25,7 @@ const NewBook = () => {
   );
   const type = useSelector((state: State) => state.books.type);
 
-  const { addBook, isModalVisible } = bindActionCreators(
+  const { addBook, isModalVisible, updateBook } = bindActionCreators(
     actionCreators,
     dispatch
   );
@@ -36,6 +38,15 @@ const NewBook = () => {
         category &&
         addBook({
           id: length + 1,
+          Name: name,
+          Price: price,
+          Category: category,
+        });
+    } else {
+      console.log("inside new book...uopdated book id...", props.id);
+      props.id &&
+        updateBook({
+          id: Number(props.id),
           Name: name,
           Price: price,
           Category: category,
@@ -97,6 +108,18 @@ const NewBook = () => {
             placeholder="Add Category"
             onChange={(e) => {
               setCategory(e.target.value);
+            }}
+            style={{
+              marginBottom: "10px",
+            }}
+          />
+          <br />
+          <input
+            type="text"
+            value={description}
+            placeholder="Add Description"
+            onChange={(e) => {
+              setDescription(e.target.value);
             }}
             style={{
               marginBottom: "10px",

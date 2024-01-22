@@ -29,10 +29,10 @@ const BookCard = (props: IBookCard) => {
             </ListGroup>
           </Card.Text>
           <Card.Footer>
-            <Button className="bg-primary" value={id} onClick={onDelete}>
+            <Button className="btn btn-primary " value={id} onClick={onDelete}>
               Delete
-            </Button>
-            <Button className="bg-primary " value={id} onClick={onUpdate}>
+            </Button>{" "}
+            <Button className="btn btn-primary " value={id} onClick={onUpdate}>
               Update
             </Button>
           </Card.Footer>

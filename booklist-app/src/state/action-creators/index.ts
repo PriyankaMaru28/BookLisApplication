@@ -21,11 +21,11 @@ export const deleteBook = (deleteBook: number) => {
   };
 };
 
-export const updateBook = (updatedbook: IBookList) => {
+export const updateBook = (updatenewbook: IBookList) => {
   return (dispatch: Dispatch) => {
     dispatch({
       type: ActionType.UPDATE_BOOK,
-      payload: updatedbook,
+      payload: updatenewbook,
     });
   };
 };

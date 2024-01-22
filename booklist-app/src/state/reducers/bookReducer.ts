@@ -1,5 +1,5 @@
 import { ActionType } from "../action-types";
-import { IAction, IContextState } from "../actions";
+import { IAction, IBookList, IContextState } from "../actions";
 
 const initialState = {
   isModalVisible: false,
@@ -13,7 +13,13 @@ const initialState = {
       Price: 400,
       Category: "Kids",
     },
-    { id: 3, Name: "Nancy Drew", Price: 1000, Category: "Horrow" },
+    {
+      id: 3,
+      Name: "Nancy Drew",
+      Price: 1000,
+      Category: "Horror",
+      Description: "A book with a good blend of Horror and fiction",
+    },
     { id: 4, Name: "Tomorrow Ends", Price: 2000, Category: "Fiction" },
     { id: 5, Name: "It is Love", Price: 800, Category: "Romance" },
     { id: 6, Name: "Never Love", Price: 500, Category: "Romance" },
@@ -36,7 +42,17 @@ const reducer = (state: IContextState = initialState, action: IAction) => {
         }),
       };
     case ActionType.UPDATE_BOOK:
-      return { ...state.book_list };
+      const updatedBook = action.payload as IBookList;
+      const oldbook = [...state.book_list];
+      const getUpdatedEle = oldbook.filter((ele) => {
+        if (ele.id !== updatedBook.id) {
+          return ele;
+        }
+      });
+      const newbooklist = [updatedBook, ...getUpdatedEle].sort(
+        (ele1, ele2) => ele1.id - ele2.id
+      );
+      return { ...state, book_list: newbooklist };
     case ActionType.SHOW_MODAL:
       return {
         ...state,

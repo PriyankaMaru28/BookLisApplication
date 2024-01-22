@@ -1,8 +1,6 @@
 import BookCard, { IBookCard } from "./BookCard";
 import { useEffect, useState } from "react";
-
 import { useSelector } from "react-redux";
-
 import { State } from "../state/reducers";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../state";

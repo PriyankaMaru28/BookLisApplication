@@ -3,6 +3,7 @@ export interface IBookList {
   Name: String;
   Price: number;
   Category: String;
+  Description?: String;
 }
 
 interface IContextState {
@@ -12,10 +13,18 @@ interface IContextState {
   book_list: IBookList[];
 }
 
-interface IContextAction {
+export interface IContextAction {
   type: String;
   payload: IBookList;
 }
+
+// export interface IContextActionUpdate {
+//   type: String;
+//   payload: {
+//     id: number;
+//     updatedBook: IBookList;
+//   };
+// }
 
 interface IContextDeleteAction {
   type: String;
@@ -31,5 +40,7 @@ interface IContextBooleanAction {
   type: String;
   payload: boolean;
 }
+
 type IAction = IContextAction | IContextDeleteAction | IContextBooleanAction;
+
 export type { IContextState, IAction };

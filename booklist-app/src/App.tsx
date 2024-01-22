@@ -13,6 +13,7 @@ function App() {
     (state: State) => state.books.isModalVisible
   );
   const [isaddBook, newbook] = useState(isModalStateUpdated);
+  const [updatedId, getUpdatedId] = useState(0);
   const dispatch = useDispatch();
   const { isModalVisible, updateType } = bindActionCreators(
     actionCreators,
@@ -32,12 +33,13 @@ function App() {
 
   const getUpdateId = (id: number) => {
     console.log("get updated id called...,", id);
+    getUpdatedId(id);
   };
 
   return (
     <>
       {isaddBook ? (
-        <NewBook />
+        <NewBook id={updatedId} />
       ) : (
         <>
           <div>
