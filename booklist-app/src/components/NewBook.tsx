@@ -6,13 +6,13 @@ import { actionCreators } from "../state/index";
 
 import { State } from "../state/reducers";
 
-interface INewBookProps {
-  Name?: String;
-  Price?: number;
-  Category?: String;
-}
+// interface INewBookProps {
+//   Name?: String;
+//   Price?: number;
+//   Category?: String;
+// }
 
-const NewBook = (props: INewBookProps) => {
+const NewBook = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [category, setCategory] = useState("");
